@@ -30,13 +30,16 @@ public class Postagem {
 	@NotNull
 	@Size(min = 10, max = 500)
 	private String texto;	
+	
+	
 
 	@Temporal(TemporalType.TIMESTAMP)
     private Date data = new java.sql.Date(System.currentTimeMillis());
 	
-	private Tema tema;
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+	
 	
 	public long getId() {
 		return id;
