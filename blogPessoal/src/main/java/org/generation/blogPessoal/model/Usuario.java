@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-
 	
 @Entity
 @Table (name = "tb_usuario")
@@ -18,7 +16,7 @@ import javax.validation.constraints.Size;
 		@GeneratedValue (strategy = GenerationType.IDENTITY)
 		private long id;
 		
-		@NotNull
+		@NotNull //NotBlank
 		@Size (min = 2, max = 100)
 		private String nome;
 		

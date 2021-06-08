@@ -21,7 +21,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 	}
 
-	@Bean //Para que serve?
+	@Bean // Ajuda o spring a localizar um determinado método
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
@@ -29,13 +29,13 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/usuarios/logar").permitAll()
-		.antMatchers("/usuarios/cadastrar").permitAll()
-		.anyRequest().authenticated()
+		.antMatchers("/usuarios/logar").permitAll() //usuarios/login
+		.antMatchers("/usuarios/cadastrar").permitAll() // .antMatchers(HttpMethod.Post,"/usuarios")
+		.anyRequest().authenticated() //precisa de autenticação
 		.and().httpBasic()
 		.and().sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().cors()
-		.and().csrf().disable();
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS) //Não precisa guardar essa sessão
+		.and().cors() //gerencia o acesso externo (outros servidores) a API, através do CrossOrigin (Lá é possivel informar qual servidor terá acesso). 
+		.and().csrf().disable();  //sigla p/ ataque hacker através de usuário comum. Neste caso, será acessado por outro sistema (front), não precisa ativá-lo e fazer configurações.
 	}
 }
