@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
@@ -21,7 +22,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 	}
 
-	@Bean // Ajuda o spring a localizar um determinado método
+	@Bean // Indica p/o spring onde localizar um método que é componente do spring, neste caso, o PasswordEncoder
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
@@ -29,8 +30,8 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/usuarios/logar").permitAll() //usuarios/login
-		.antMatchers("/usuarios/cadastrar").permitAll() // .antMatchers(HttpMethod.Post,"/usuarios")
+		.antMatchers("/usuarios/logar").permitAll() //Ex: usuarios/login
+		.antMatchers("/usuarios/cadastrar").permitAll() // .antMatchers(HttpMethod.Post,"/usuarios" - Não colocar verbos na url, segundo boas práticas Ex:(/usuarios/cadastro)
 		.anyRequest().authenticated() //precisa de autenticação
 		.and().httpBasic()
 		.and().sessionManagement()
