@@ -24,9 +24,19 @@ import javax.validation.constraints.Size;
 		@Size(min = 5, max = 100)
 		private String usuario;
 		
-		@NotNull
+		@NotNull (message = "É necessário senha")
 		@Size(min = 5, max = 100)
 		private String senha;
+		
+		//sobrecarga de construtor utilizado no teste
+		public Usuario() {
+			
+		}
+		
+		public Usuario(String usuario, String senha) {
+			this.usuario = usuario;
+			this.senha = senha;
+		}
 
 		public long getId() {
 			return id;
