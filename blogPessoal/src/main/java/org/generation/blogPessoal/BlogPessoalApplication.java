@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BlogPessoalApplication {
 	
 	@GetMapping
-    public ModelAndView swaggerUi() {
+    public ModelAndView swaggerUi() { //Via swagger
         return new ModelAndView("redirect:/swagger-ui/");
     }
 
