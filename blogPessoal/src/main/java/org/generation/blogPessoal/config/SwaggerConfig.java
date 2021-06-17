@@ -45,7 +45,7 @@ public class SwaggerConfig {
 		return new ArrayList<Response>() { //Criando classe anônima (herda de ArrayList - método que chama classe
 			private static final long serialVersionUID = 1L; //Inicializador de instância
 			{
-				add(new ResponseBuilder().code("200").description("Sucesso!").build());
+				add(new ResponseBuilder().code("200").description("Sucesso!").build()); //msgs
 				add(new ResponseBuilder().code("201").description("Objeto Criado!").build());
 				add(new ResponseBuilder().code("401").description("Não Autorizado!").build());
 				add(new ResponseBuilder().code("403").description("Proibido!").build());
